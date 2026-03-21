@@ -1,13 +1,16 @@
-# Baut die Corne-Firmware bei jedem Push und stellt die .uf2-Datei
-# als Download bereit (GitHub Actions → Artifacts).
+# Baut die Corne-Firmware und erzeugt eine Keymap-Grafik bei jedem Push.
 #
-# Ablauf:
+# Ablauf Firmware:
 #   1. Push auf GitHub
 #   2. Workflow läuft automatisch (~3-5 Minuten)
-#   3. Auf GitHub → Actions → letzter Run → Artifacts → firmware.uf2 runterladen
+#   3. GitHub → Actions → letzter Run → Artifacts → corne-firmware runterladen
 #   4. Corne mit gedrückter Q/P-Taste einstecken → RPI-RP2 Laufwerk erscheint
 #   5. .uf2-Datei in das Laufwerk ziehen — fertig
 #   6. Beide Hälften nacheinander flashen (gleiche Datei)
+#
+# Ablauf Keymap-Grafik:
+#   Wird automatisch aus keymap.c erzeugt und als Artifact hochgeladen.
+#   Nur die .c pflegen — die SVG wird daraus generiert.
 
 name: Build Corne Firmware
 
@@ -16,7 +19,7 @@ on:
     paths:
       - 'keyboards/crkbd/keymaps/gunters_km/**'
       - '.github/workflows/build.yml'
-  workflow_dispatch:  # Manuell auslösbar über GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -33,6 +36,13 @@ jobs:
       - name: Build Firmware
         run: make crkbd/rev4_1/standard:gunters_km SKIP_GIT=yes
 
+      - name: Generate Keymap SVG
+        run: |
+          pip install keymap-drawer
+          qmk c2json -kb crkbd/rev4_1/standard -km gunters_km -o /tmp/keymap.json
+          keymap parse -q /tmp/keymap.json -o /tmp/keymap.yaml
+          keymap draw /tmp/keymap.yaml -o keymap.svg
+
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
         with:
@@ -41,3 +51,10 @@ jobs:
             *.uf2
             *.hex
           if-no-files-found: error
+
+      - name: Upload Keymap SVG
+        uses: actions/upload-artifact@v4
+        with:
+          name: keymap-svg
+          path: keymap.svg
+          if-no-files-found: warn
