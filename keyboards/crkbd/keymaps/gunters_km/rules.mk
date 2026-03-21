@@ -1,6 +1,4 @@
-# Vial-Support aktiv lassen für den Fall dass du
-# zwischendurch doch mal schnell was in Vial testen willst.
-# Kann später raus wenn alles steht.
-VIAL_ENABLE        = yes
-VIALRGB_ENABLE     = yes
+# Keine zusätzlichen Features aktiviert.
+# Vial wurde entfernt — braucht einen eigenen QMK-Fork (vial-qmk)
+# und ist mit Standard-QMK nicht kompatibel.
 ENCODER_MAP_ENABLE = no
