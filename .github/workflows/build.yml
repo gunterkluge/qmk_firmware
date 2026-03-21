@@ -1,0 +1,43 @@
+# Baut die Corne-Firmware bei jedem Push und stellt die .uf2-Datei
+# als Download bereit (GitHub Actions → Artifacts).
+#
+# Ablauf:
+#   1. Push auf GitHub
+#   2. Workflow läuft automatisch (~3-5 Minuten)
+#   3. Auf GitHub → Actions → letzter Run → Artifacts → firmware.uf2 runterladen
+#   4. Corne mit gedrückter Q/P-Taste einstecken → RPI-RP2 Laufwerk erscheint
+#   5. .uf2-Datei in das Laufwerk ziehen — fertig
+#   6. Beide Hälften nacheinander flashen (gleiche Datei)
+
+name: Build Corne Firmware
+
+on:
+  push:
+    paths:
+      - 'keyboards/crkbd/keymaps/gunters_km/**'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:  # Manuell auslösbar über GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Build Firmware
+        run: qmk compile -kb crkbd/rev4_1/standard -km gunters_km
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: corne-firmware
+          path: |
+            *.uf2
+            *.hex
+          if-no-files-found: error

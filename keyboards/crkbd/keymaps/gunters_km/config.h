@@ -1,9 +1,17 @@
 #pragma once
 
-// #define VIAL_KEYBOARD_UID {0x89, 0x36, 0x2A, 0xC7, 0xFA, 0xD8, 0x89, 0x45}
-// #define VIAL_UNLOCK_COMBO_ROWS {0, 0}
-// #define VIAL_UNLOCK_COMBO_COLS {0, 1}
-
+// -- Timing für Home Row Mods ----------------------------------------------
+// TAPPING_TERM: Haltezeit in ms, ab der ein Tap-Hold-Key als Hold gilt.
+// 250ms ist konservativ — lieber etwas langsamer als Fehlauslösungen.
 #define TAPPING_TERM 250
+
+// -- CHORDAL_HOLD ----------------------------------------------------------
+// Modifier wird nur erkannt wenn der zweite Tastendruck auf der ANDEREN
+// Hand liegt. Verhindert ß-statt-ls und ähnliche Fehlauslösungen.
 #define CHORDAL_HOLD
+
+// -- PERMISSIVE_HOLD -------------------------------------------------------
+// Wenn du einen Tap-Hold-Key hältst und innerhalb des TAPPING_TERM einen
+// zweiten Key drückst UND loslässt, wird der erste Key als Hold gewertet.
+// Macht Modifier+Key-Combos reaktionsschneller.
 #define PERMISSIVE_HOLD
