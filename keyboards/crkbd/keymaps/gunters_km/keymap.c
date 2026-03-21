@@ -17,9 +17,15 @@
 //   Links:  A=GUI  S=Alt  D=Ctrl  F=Shift
 //   Rechts: ;=GUI  L=Alt  K=Ctrl  J=Shift
 //
+// Sondertasten:
+//   Oben links: Hyper (Ctrl+Shift+Alt+GUI) — frei für Systemkürzel
+//   Home links: Esc (latenzfrei, nicht dual-function)
+//   Oben rechts: Delete
+//   Extra-Spalten: Vol-  Vol+  Mute  Play/Pause (auf allen Layern)
+//
 // Thumb-Tasten:
-//   Links:  Esc/NAV   Space/SYM   Tab
-//   Rechts: Enter     Bsp/NUM     GUI
+//   Links:  NAV(hold) Space/SYM   Tab
+//   Rechts: Enter     Bsp/NUM     AltGr (Right Alt, für EurKey → ä ö ü ß €)
 
 #include QMK_KEYBOARD_H
 
@@ -33,10 +39,12 @@
 #define HM_L    LALT_T(KC_L)
 #define HM_SCLN RGUI_T(KC_SCLN)
 
-// -- Layer-Tap Thumb-Tasten ------------------------------------------------
-#define NAV_ESC  LT(1, KC_ESC)
+// -- Thumb-Tasten -----------------------------------------------------------
 #define SYM_SPC  LT(2, KC_SPC)
 #define NUM_BSPC LT(3, KC_BSPC)
+
+// -- Sondertasten -----------------------------------------------------------
+#define HY_KEY   HYPR(KC_NO)   // Hyper (Ctrl+Shift+Alt+GUI) — frei für Systemkürzel
 
 // -- Layer-Namen -----------------------------------------------------------
 enum layers {
@@ -52,39 +60,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ┌─────────────────────────────────────────────────────────────────────┐
   // │ BASE — QWERTY mit GACS Home Row Mods                              │
   // │                                                                     │
-  // │ Tab  Q    W    E    R    T    ·    ·    Y    U    I    O    P  Bsp  │
-  // │ Ctrl A/G  S/A  D/C  F/S  G    ·    ·    H    J/S  K/C  L/A  ;/G ' │
+  // │ Hyp  Q    W    E    R    T   Vol- Vol+  Y    U    I    O    P  Del  │
+  // │ Esc  A/G  S/A  D/C  F/S  G   Mute Play  H    J/S  K/C  L/A  ;/G ' │
   // │ Sft  Z    X    C    V    B              N    M    ,    .    /  Sft  │
-  // │                Esc  Spc  Tab       Ent  Bsp  GUI                    │
-  // │                /NAV /SYM                /NUM                        │
+  // │                NAV  Spc  Tab       Ent  Bsp  AltGr                  │
+  // │                     /SYM                /NUM                        │
   // └─────────────────────────────────────────────────────────────────────┘
   [_BASE] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.  ,--------------------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  KC_NO,      KC_NO,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+       HY_KEY,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_VOLD,    KC_VOLU,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,   KC_DEL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    HM_A,    HM_S,    HM_D,    HM_F,    KC_G,  KC_NO,      KC_NO,    KC_H,    HM_J,    HM_K,    HM_L, HM_SCLN, KC_QUOT,
+       KC_ESC,    HM_A,    HM_S,    HM_D,    HM_F,    KC_G, KC_MUTE,    KC_MPLY,    KC_H,    HM_J,    HM_K,    HM_L, HM_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
-                                         NAV_ESC, SYM_SPC,  KC_TAB,    KC_ENT, NUM_BSPC, KC_RGUI
+                                          MO(1), SYM_SPC,  KC_TAB,    KC_ENT, NUM_BSPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
   // ┌─────────────────────────────────────────────────────────────────────┐
-  // │ NAV — Navigation (linker Daumen hält Esc)                          │
+  // │ NAV — Navigation (linker Daumen hält)                              │
   // │                                                                     │
   // │ Links: explizite Modifier    Rechts: Pfeile, Seitennavigation      │
   // │                                                                     │
-  // │  ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ·   ·  │
-  // │  ·   GUI  Alt  Ctrl Sft   ·    ·    ·    ←    ↓    ↑    →    ·   · │
+  // │  ·    ·    ·    ·    ·    ·   (V-) (V+)  ·    ·    ·    ·    ·   · │
+  // │  ·   GUI  Alt  Ctrl Sft   ·  (Mut)(Ply)  ←    ↓    ↑    →    ·   · │
   // │  ·    ·    ·    ·    ·    ·              Home PgDn PgUp End   ·   · │
   // │                ░░░░  ·    ·         Ent  Bsp   ·                    │
   // └─────────────────────────────────────────────────────────────────────┘
   [_NAV] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.  ,--------------------------------------------------------------.
-       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_TRNS,    KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-       KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,   KC_NO,   KC_NO,      KC_NO, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   KC_NO,   KC_NO,
+       KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,   KC_NO, KC_TRNS,    KC_TRNS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
@@ -97,16 +105,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // │                                                                     │
   // │ Links: explizite Modifier    Rechts: Symbole und Sonderzeichen     │
   // │                                                                     │
-  // │  ·    ·    ·    ·    ·    ·    ·    ·    *    {    }    <    >   `  │
-  // │  ·   GUI  Alt  Ctrl Sft   ·    ·    ·    =    (    )    ^    :   " │
+  // │  ·    ·    ·    ·    ·    ·   (V-) (V+)  *    {    }    <    >   `  │
+  // │  ·   GUI  Alt  Ctrl Sft   ·  (Mut)(Ply)  =    (    )    ^    :   " │
   // │  ·    ·    ·    ·    ·    ·              +    [    ]    ,    \   |  │
   // │                 ·   ░░░░  ·         Ent   _    ·                    │
   // └─────────────────────────────────────────────────────────────────────┘
   [_SYM] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.  ,--------------------------------------------------------------.
-       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO, KC_ASTR, KC_LCBR, KC_RCBR, KC_LABK, KC_RABK,  KC_GRV,
+       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_TRNS,    KC_TRNS, KC_ASTR, KC_LCBR, KC_RCBR, KC_LABK, KC_RABK,  KC_GRV,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-       KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,   KC_NO,   KC_NO,      KC_NO,  KC_EQL, KC_LPRN, KC_RPRN, KC_CIRC, KC_COLN,  KC_DQT,
+       KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,   KC_NO, KC_TRNS,    KC_TRNS,  KC_EQL, KC_LPRN, KC_RPRN, KC_CIRC, KC_COLN,  KC_DQT,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                      KC_PLUS, KC_LBRC, KC_RBRC, KC_COMM, KC_BSLS, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
@@ -119,16 +127,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // │                                                                     │
   // │ Links: Nummernblock-Layout   Rechts: explizite Modifier            │
   // │                                                                     │
-  // │  ·    *    7    8    9    +    ·    ·    ·    ·    ·    ·    ·   ·  │
-  // │  ·    /    1    2    3    0    ·    ·    ·   Sft  Ctrl Alt  GUI  ·  │
+  // │  ·    *    7    8    9    +   (V-) (V+)  ·    ·    ·    ·    ·   ·  │
+  // │  ·    /    1    2    3    0  (Mut)(Ply)  ·   Sft  Ctrl Alt  GUI  ·  │
   // │  ·    ~    4    5    6    -              ·    ·    ·    ·    ·    ·  │
   // │                 ,    =    .          ·   ░░░░  ·                    │
   // └─────────────────────────────────────────────────────────────────────┘
   [_NUM] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.  ,--------------------------------------------------------------.
-       KC_NO, KC_ASTR,    KC_7,    KC_8,    KC_9, KC_PLUS,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+       KC_NO, KC_ASTR,    KC_7,    KC_8,    KC_9, KC_PLUS, KC_TRNS,    KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-       KC_NO, KC_SLSH,    KC_1,    KC_2,    KC_3,    KC_0,   KC_NO,      KC_NO,   KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI,   KC_NO,
+       KC_NO, KC_SLSH,    KC_1,    KC_2,    KC_3,    KC_0, KC_TRNS,    KC_TRNS,   KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
        KC_NO, KC_TILD,    KC_4,    KC_5,    KC_6, KC_MINS,                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
