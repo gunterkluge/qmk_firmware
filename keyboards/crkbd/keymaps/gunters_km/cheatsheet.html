@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Corne Keymap — Tischaufsteller</title>
+<style>
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Mono", "JetBrains Mono", "Fira Code", "Cascadia Code", Menlo, Monaco, monospace;
+    font-size: 9pt;
+    line-height: 1.3;
+    color: #1a1a1a;
+  }
+  .page {
+    width: 277mm;
+    height: 190mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .side {
+    height: 50%;
+    padding: 4mm 6mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .side-back {
+    transform: rotate(180deg);
+    border-bottom: 1px dashed #aaa;
+  }
+  h1 {
+    font-size: 12pt;
+    font-weight: 700;
+    margin-bottom: 2mm;
+  }
+  .layer-title {
+    font-size: 9pt;
+    font-weight: 700;
+    padding: 0.5mm 2mm;
+    background: #222;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 1mm;
+  }
+  .layer-sub {
+    font-size: 7.5pt;
+    color: #666;
+    margin-left: 2mm;
+    font-weight: normal;
+  }
+  table {
+    border-collapse: collapse;
+    margin-bottom: 1.5mm;
+  }
+  td {
+    border: 1px solid #bbb;
+    padding: 1.2mm 2mm;
+    text-align: center;
+    font-size: 8pt;
+    min-width: 8mm;
+    white-space: nowrap;
+  }
+  .mod {
+    background: #e8e8e8;
+    color: #444;
+  }
+  .spacer {
+    border: none !important;
+    background: none !important;
+    min-width: 8mm;
+  }
+  .gap { width: 4mm; border: none !important; background: none !important; }
+  .info {
+    font-size: 7.5pt;
+    color: #555;
+    margin-top: 2mm;
+    line-height: 1.5;
+  }
+  .info strong { color: #222; }
+  .section { margin-bottom: 3mm; }
+  .pair {
+    display: flex;
+    gap: 8mm;
+    align-items: flex-start;
+  }
+  .pair > div { flex: 1; }
+  .footer {
+    font-size: 6.5pt;
+    color: #999;
+    text-align: center;
+    margin-top: 2mm;
+  }
+  .thumb td {
+    font-size: 7.5pt;
+    background: #f0f0f0;
+  }
+  .thumb-right { margin-left: auto; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- RUECKSEITE oben (auf dem Kopf) -->
+<div class="side side-back">
+  <h1>Gunters Corne — Layer</h1>
+
+  <div class="section">
+    <span class="layer-title">SYM2</span>
+    <span class="layer-sub">Bsp halten — linke Hand</span>
+    <span style="margin-left:12mm"></span>
+    <span class="layer-title">SYM1</span>
+    <span class="layer-sub">Space halten — rechte Hand</span>
+    <table>
+      <tr><td>!</td><td>@</td><td>#</td><td>$</td><td>%</td><td class="gap"></td><td>"</td><td>+</td><td>*</td><td>^</td><td>'</td></tr>
+      <tr><td><b>&lt;</b></td><td><b>[</b></td><td><b>{</b></td><td><b>(</b></td><td>&amp;</td><td class="gap"></td><td>;</td><td><b>)</b></td><td><b>}</b></td><td><b>]</b></td><td><b>&gt;</b></td></tr>
+      <tr><td>~</td><td>|</td><td>\</td><td>`</td><td>/</td><td class="gap"></td><td>'</td><td>-</td><td>:</td><td>\</td><td>|</td></tr>
+    </table>
+    <table class="thumb">
+      <tr><td class="spacer"></td><td class="spacer"></td><td>-</td><td>=</td><td>_</td><td class="gap"></td><td>_</td><td>=</td><td>-</td><td class="spacer"></td><td class="spacer"></td></tr>
+    </table>
+    <div class="info">
+      <strong>Klammern gleicher Finger:</strong> ( ) Index &nbsp; { } Mittel &nbsp; [ ] Ring &nbsp; &lt; &gt; Pinky
+      &nbsp;&nbsp;&nbsp; <strong>= _ -</strong> auf Daumen beider SYM-Layer
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="layer-title">NUM</span>
+    <span class="layer-sub">Enter halten — linke Hand</span>
+    <span style="margin-left:12mm"></span>
+    <span class="layer-title">FUN</span>
+    <span class="layer-sub">Tab halten — rechte Hand</span>
+    <table>
+      <tr><td>/</td><td>7</td><td>8</td><td>9</td><td>-</td><td class="gap"></td><td>F12</td><td>F7</td><td>F8</td><td>F9</td><td>Bri+</td><td>MCtrl</td></tr>
+      <tr><td>*</td><td>4</td><td>5</td><td>6</td><td>+</td><td class="gap"></td><td>F11</td><td>F4</td><td>F5</td><td>F6</td><td></td><td>Cmd`</td></tr>
+      <tr><td>,</td><td>1</td><td>2</td><td>3</td><td>.</td><td class="gap"></td><td>F10</td><td>F1</td><td>F2</td><td>F3</td><td>Bri-</td><td></td></tr>
+    </table>
+    <table class="thumb">
+      <tr><td class="spacer"></td><td class="spacer"></td><td>Bsp</td><td>0</td><td>=</td><td class="gap"></td><td class="spacer"></td><td>CpWd</td><td class="spacer"></td><td class="spacer"></td><td class="spacer"></td><td class="spacer"></td></tr>
+    </table>
+    <div class="info">
+      <strong>Links auf FUN:</strong> Sc3/4/5 = Screenshot &nbsp; Spc&larr;/&rarr; = Desktop wechseln &nbsp; MPrv/MNxt = Track
+      &nbsp;&nbsp;&nbsp; <strong>CpWd</strong> = Caps Word &nbsp; <strong>MCtrl</strong> = Mission Control &nbsp; <strong>Cmd`</strong> = Fenster wechseln
+    </div>
+  </div>
+
+  <div class="footer">In der Mitte falten — als umgekehrtes V aufstellen</div>
+</div>
+
+<!-- VORDERSEITE unten (normal) -->
+<div class="side">
+  <h1>Gunters Corne — Miryoku</h1>
+
+  <div class="section">
+    <span class="layer-title">BASE</span>
+    <table>
+      <tr><td>Hyp</td><td>Q</td><td>W</td><td>E</td><td>R</td><td>T</td><td class="gap"></td><td>Y</td><td>U</td><td>I</td><td>O</td><td>P</td><td>Del</td></tr>
+      <tr><td>Esc</td><td class="mod">A/Cmd</td><td class="mod">S/Alt</td><td class="mod">D/Ctl</td><td class="mod">F/Sft</td><td>G</td><td class="gap"></td><td>H</td><td class="mod">J/Sft</td><td class="mod">K/Ctl</td><td class="mod">L/Alt</td><td class="mod">;/Cmd</td><td>'</td></tr>
+      <tr><td>Sft</td><td>Z</td><td>X</td><td>C</td><td>V</td><td>B</td><td class="gap"></td><td>N</td><td>M</td><td>,</td><td>.</td><td>/</td><td>Sft</td></tr>
+    </table>
+    <table class="thumb">
+      <tr><td class="spacer"></td><td class="spacer"></td><td class="spacer"></td><td>Esc/<b>NAV</b></td><td>Spc/<b>SYM1</b></td><td>Tab/<b>FUN</b></td><td class="gap"></td><td>Ent/<b>NUM</b></td><td>Bsp/<b>SYM2</b></td><td>Del/<b>EUR</b></td><td class="spacer"></td><td class="spacer"></td><td class="spacer"></td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <span class="layer-title">NAV</span>
+    <span class="layer-sub">Esc halten (links aussen) — Modifier auf linker Home-Row</span>
+    <table>
+      <tr><td>ZAnf</td><td>Wrt&larr;</td><td>Wrt&rarr;</td><td>ZEnd</td><td>KilLn</td><td>Redo</td></tr>
+      <tr><td>&larr;</td><td>&darr;</td><td>&uarr;</td><td>&rarr;</td><td>WrtBs</td><td>Undo</td></tr>
+      <tr><td>Home</td><td>PgDn</td><td>PgUp</td><td>End</td><td>WrtDl</td><td>Find</td></tr>
+    </table>
+    <table class="thumb">
+      <tr><td>Ent</td><td>Bsp</td><td>Del</td></tr>
+    </table>
+    <div class="info">
+      <strong>ZAnf/End</strong> = Cmd+&larr;/&rarr; &nbsp;
+      <strong>Wrt&larr;/&rarr;</strong> = Alt+&larr;/&rarr; &nbsp;
+      <strong>KilLn</strong> = Ctrl+K &nbsp;
+      <strong>WrtBs/Dl</strong> = Alt+Bsp/Del &nbsp;
+      <strong>Undo/Redo</strong> = Cmd+Z / Cmd+Shift+Z
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

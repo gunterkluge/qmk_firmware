@@ -1,0 +1,48 @@
+
+  Gunters Corne Keymap — Cheatsheet
+  ==================================
+
+  Daumen (Tap / Hold):
+  Links:   Esc/NAV    Space/SYM1    Tab/FUN
+  Rechts:  Enter/NUM  Bsp/SYM2      Del/EURKEY
+
+  Home Row Mods (GACS):  A=Cmd  S=Alt  D=Ctrl  F=Shift  |  J=Shift  K=Ctrl  L=Alt  ;=Cmd
+
+
+  BASE                                                           NAV  (linker aeusserer Daumen)
+  ╔══════════════════════════════════════════════╗                ╔══════════════════════════════════════════════════════════╗
+  ║ Hyp │  Q  │  W  │  E  │  R  │  T  ║  Y  │  U  │  I  │  O  │  P  │ Del ║                ║     │     │     │     │     │     ║ZAnf │Wrt← │Wrt→ │ZEnd │KilLn│Redo ║
+  ║ Esc │ A/G │ S/A │ D/C │ F/S │  G  ║  H  │ J/S │ K/C │ L/A │ ;/G │  '  ║                ║     │ Cmd │ Alt │Ctrl │ Sft │     ║  ←  │  ↓  │  ↑  │  →  │WrtBs│Undo ║
+  ║ Sft │  Z  │  X  │  C  │  V  │  B  ║  N  │  M  │  ,  │  .  │  /  │ Sft ║                ║     │     │     │     │     │     ║Home │PgDn │PgUp │ End │WrtDl│Find ║
+  ╚═══════════════╡Esc/NAV│Spc/S1│Tab/FN╞Ent/NU│Bsp/S2│Del/EU╡═══════════╝                ╚═══════════════╡ ░░░ │     │     ╞ Ent │ Bsp │ Del ╡═══════════════════╝
+
+
+  SYM1  (linker mittlerer Daumen)                               SYM2  (rechter mittlerer Daumen)
+  ╔══════════════════════════════════════════════╗                ╔══════════════════════════════════════════════╗
+  ║     │     │     │     │     │     ║  "  │  +  │  *  │  ^  │  '  │     ║                ║     │  !  │  @  │  #  │  $  │  %  ║     │     │     │     │     │     ║
+  ║     │ Cmd │ Alt │Ctrl │ Sft │     ║  ;  │  )  │  }  │  ]  │  >  │     ║                ║     │  <  │  [  │  {  │  (  │  &  ║     │ Sft │Ctrl │ Alt │ Cmd │     ║
+  ║     │     │     │     │     │     ║  '  │  -  │  :  │  \  │  |  │     ║                ║     │  ~  │  |  │  \  │  `  │  /  ║     │     │     │     │     │     ║
+  ╚═══════════════╡     │ ░░░ │     ╞  _  │  =  │  -  ╡═══════════════╝                ╚═══════════════╡  -  │  =  │  _  ╞     │ ░░░ │     ╡═══════════════════╝
+
+  Klammern symmetrisch:  (/) Index   {/} Mittel   [/] Ring   </> Pinky
+  = _ - auf Daumen beider SYM-Layer
+
+
+  NUM  (rechter innerer Daumen)                                  FUN  (linker innerer Daumen)
+  ╔══════════════════════════════════════════════╗                ╔══════════════════════════════════════════════════════════╗
+  ║     │  /  │  7  │  8  │  9  │  -  ║     │     │     │     │     │     ║                ║     │ScBer│ScVol│ScTlb│     │     ║ F12 │ F7  │ F8  │ F9  │Bri+ │MCrtl║
+  ║     │  *  │  4  │  5  │  6  │  +  ║     │ Sft │Ctrl │ Alt │ Cmd │     ║                ║     │ Cmd │ Alt │Ctrl │ Sft │     ║ F11 │ F4  │ F5  │ F6  │     │Cmd+`║
+  ║     │  ,  │  1  │  2  │  3  │  .  ║     │     │     │     │     │     ║                ║     │Spc← │Spc→ │MPrv │MNxt │     ║ F10 │ F1  │ F2  │ F3  │Bri- │     ║
+  ╚═══════════════╡ Bsp │  0  │  =  ╞ ░░░ │     │     ╡═══════════════╝                ╚═══════════════╡     │     │ ░░░ ╞     │CpWd │     ╡═══════════════════╝
+
+
+  EURKEY  (rechter aeusserer Daumen)                             Legende
+  ╔══════════════════════════════════════════════╗                ┌─────────────────────────────────────────────┐
+  ║     │  Ä  │     │  €  │     │     ║     │  ü  │     │  ö  │     │     ║                │ ░░░  = Layer-Taste (gehalten)               │
+  ║     │  ä  │  ß  │     │     │     ║     │  Ü  │     │  Ö  │     │     ║                │ /G   = GUI (Cmd)   /A = Alt                  │
+  ║ Sft │     │     │     │     │     ║     │     │     │     │     │ Sft ║                │ /C   = Ctrl        /S = Shift                │
+  ╚═══════════════╡     │     │     ╞     │     │ ░░░ ╡═══════════════╝                │ Extra-Spalten: Vol-/+ Mute Play (immer)     │
+                                                                                          │ ScBer/Vol/Tlb = Screenshot Bereich/Voll/Bar │
+  Gleicher Finger: ä/Ä  ü/Ü  ö/Ö                                                         │ CpWd = Caps Word   MCtrl = Mission Control  │
+                                                                                          │ Spc←/→ = Space links/rechts wechseln        │
+                                                                                          └─────────────────────────────────────────────┘
