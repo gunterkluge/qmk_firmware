@@ -3,3 +3,4 @@
 # und ist mit Standard-QMK nicht kompatibel.
 ENCODER_MAP_ENABLE = no
 CAPS_WORD_ENABLE = yes
+LAYER_LOCK_ENABLE = yes

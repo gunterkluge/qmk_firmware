@@ -106,6 +106,16 @@
   ueber TG(_NUM) auf einer sicheren Position, z.B. Combo oder Doppel-Tap.
 - EURKEY-Layer weiter fuellen (Guillemets, Gedankenstrich, Grad-Zeichen)
 - Undo/Cut/Copy/Paste auf NAV linke Hand (Z/X/C/V als Cmd+Z/X/C/V)
+- NAV-Layer: Terminal-Kompatibilitaet fuer die neuen Tasten (ZAnf, ZEnd,
+  Wrt<, Wrt>, WrtBs, WrtDl, Undo, Redo, Find). Diese senden macOS-GUI-
+  Shortcuts (Cmd+Left, Alt+Bsp etc.), die in Terminals nicht ankommen.
+  Moegliche Loesungen:
+  - WezTerm-Keybindings: Cmd+Left -> \x01 (Ctrl+A) etc. uebersetzen,
+    damit die Tasten ueberall funktionieren — sauberste Loesung
+  - QMK-seitig: OS-Erkennung (os_detection) und je nach Kontext andere
+    Keycodes senden — komplex, QMK-Feature noch experimentell
+  - Akzeptieren: Pfeiltasten + Home/End funktionieren im Terminal,
+    die GUI-Shortcuts sind fuer GUI-Apps gedacht
 
 ## Ergonomie-Regeln (Zusammenfassung)
 
