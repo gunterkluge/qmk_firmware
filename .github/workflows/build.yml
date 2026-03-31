@@ -1,20 +1,21 @@
-# Baut die Corne-Firmware bei jedem Push und stellt die .uf2-Datei
+# Baut die Keyboard-Firmware bei jedem Push und stellt die Dateien
 # als Download bereit (GitHub Actions → Artifacts).
 #
 # Ablauf:
 #   1. Push auf GitHub
 #   2. Workflow läuft automatisch (~3-5 Minuten)
-#   3. GitHub → Actions → letzter Run → Artifacts → corne-firmware runterladen
-#   4. Corne mit gedrückter Q/P-Taste einstecken → RPI-RP2 Laufwerk erscheint
-#   5. .uf2-Datei in das Laufwerk ziehen — fertig
+#   3. GitHub → Actions → letzter Run → Artifacts → Firmware runterladen
+#   4. Keyboard mit gedrückter Boot-Taste einstecken → Laufwerk erscheint
+#   5. Firmware-Datei in das Laufwerk ziehen — fertig
 #   6. Beide Hälften nacheinander flashen (gleiche Datei)
 
-name: Build Corne Firmware
+name: Build Firmware
 
 on:
   push:
     paths:
       - 'keyboards/crkbd/keymaps/gunters_km/**'
+      - 'keyboards/sofle_choc/keymaps/gunters_km/**'
       - '.github/workflows/build.yml'
   workflow_dispatch:
 
@@ -23,6 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/qmk/qmk_cli
 
+    strategy:
+      matrix:
+        include:
+          - keyboard: crkbd/rev4_1/standard
+            keymap: gunters_km
+            name: corne
+          - keyboard: sofle_choc
+            keymap: gunters_km
+            name: sofle-choc
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,13 +41,13 @@ jobs:
           fetch-depth: 1
           submodules: recursive
 
-      - name: Build Firmware
-        run: make crkbd/rev4_1/standard:gunters_km SKIP_GIT=yes
+      - name: Build ${{ matrix.name }}
+        run: make ${{ matrix.keyboard }}:${{ matrix.keymap }} SKIP_GIT=yes
 
-      - name: Upload Firmware
+      - name: Upload ${{ matrix.name }} Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: corne-firmware
+          name: ${{ matrix.name }}-firmware
           path: |
             *.uf2
             *.hex
