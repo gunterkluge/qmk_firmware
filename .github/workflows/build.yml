@@ -15,7 +15,7 @@ on:
   push:
     paths:
       - 'keyboards/crkbd/keymaps/gunters_km/**'
-      - 'keyboards/sofle_choc/keymaps/gunters_km/**'
+      - 'keyboards/keebart/sofle_choc_pro/**'
       - '.github/workflows/build.yml'
   workflow_dispatch:
 
@@ -30,9 +30,9 @@ jobs:
           - keyboard: crkbd/rev4_1/standard
             keymap: gunters_km
             name: corne
-          - keyboard: sofle_choc
+          - keyboard: keebart/sofle_choc_pro
             keymap: gunters_km
-            name: sofle-choc
+            name: sofle-choc-pro
 
     steps:
       - name: Checkout

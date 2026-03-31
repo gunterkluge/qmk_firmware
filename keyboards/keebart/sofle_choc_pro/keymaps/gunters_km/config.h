@@ -11,6 +11,3 @@
 // -- PERMISSIVE_HOLD -------------------------------------------------------
 // Macht Modifier+Key-Combos reaktionsschneller.
 #define PERMISSIVE_HOLD
-
-// -- Split-Erkennung -------------------------------------------------------
-#define SPLIT_USB_DETECT
